@@ -1,7 +1,7 @@
 import os, fiona, random
 import numpy as np
 from shapely.geometry import mapping, shape, Point, Polygon
-from math import *
+from fiona.crs import from_epsg
 
 
 class alessandro(object):
@@ -103,9 +103,9 @@ class alessandro(object):
             self.individuos[k]['grados'] = grados
 
         # Ahora anadimos los offset de x e y
-            for k in lespecies:
-                distxy = self.get_diff(self.individuos[k]['ceg'])
-                self.individuos[k]['xoff'], self.individuos[k]['yoff'] = distxy[0], distxy[1]
+        for k in lespecies:
+
+            self.offset(k)
 
         # Ya tenemos un diccionario con las coordenadas x e y de los centroides, ahora debemos de crear un shape para cada id_progress
         schema = {'geometry': 'Point', 'properties': {'id': 'int'}}
@@ -130,6 +130,36 @@ class alessandro(object):
     #Aqui estaban el calcula de la distancia y el angulo entre cada punto y el centroide, siguen en el notebook
     #en principio no haran falta haciendo larotacion con shapely.affinity
 
+    def check(self, centroid, k, offx, offy):
+
+        '''Este metodo se usa para comprobar que el centroide cae dentro de una de las zonas en las que debe de caer'''
+        centroid = Point(centroid)
+        cc = affinity.translate(centroid, offx, offy)
+        marco = fiona.open(self.marco)
+        mc = Polygon(marco['geometry']['coordinates'])
+
+        if mc.contains(cc):
+            self.individuos[k]['xoff'], self.individuos[k]['yoff'] = offx, offy
+        else:
+            self.offset(k)
+
+
+    def offset(self, k):
+
+        '''Este metodo va ajustando el offset hasta que el centroide cae dentro del area'''
+        distxy = self.get_diff(self.individuos[k]['ceg'])
+        # hemos sacado la distancia x e y al frame, ahora cogemos un valor aleatorio entre 0 y esas distancias
+        if distxy[0] < 0:
+            offx = round(random.uniform(distxy[0], 0), 2)
+        else:
+            offx = round(random.uniform(0, distxy[0]), 2)
+        if distxy[1] < 0:
+            offy = round(random.uniform(distxy[1], 0), 2)
+        else:
+            offy = round(random.uniform(0, distxy[1]), 2)
+
+        self.check(self.individuos[k]['ceg'], k,  offx, offy)
+
 
     def rotate_c(self):
 
@@ -137,17 +167,18 @@ class alessandro(object):
         que haya tocado. Retorna una tupla  con valores (X, Y) con la diferencia. Por tanto get_diff[0] es la diferencia en X
         y get_diff[1] es la diferencia en Y)'''
 
-        points = fiona.open(self.pointshp)
-        for i in points:
-            coords = i['geometry']['coordinates']
-            p = Point(coords)
-            # Ahora vamos a sacar la especie para decirle que debe rotar desde su centroide
-            id_p = i['properties']['ID_progres']
+        # Abrimos el shape originl
+        with fiona.open(self.pointshp, 'r') as input:
+            # The output has the same schema
+            schema = input.schema.copy()
+            coords = from_epsg(25830)
 
-            rp = affinity.rotate(p, self.individuos[id_p]['grados'],
-                                 self.individuos[id_p]['ceg'],
-                                 use_radians=False)
-
-            line = str(rp.coords[0][0]) + ' ' + str(rp.coords[0][1]) + '\n'
-            print(line, '\n++++++++++\n')
-            file.write(line)
+            # Escribimos el nuevo shapefile con las nuevas coordenadas
+            with fiona.open(os.path.join(self.moved, 'out_rpt.shp'), 'w',
+                            'ESRI Shapefile', schema, coords) as output:
+                for elem in input:
+                    idp = elem['properties']['ID_progres']
+                    p = Point(elem['geometry']['coordinates'])
+                    rp = affinity.rotate(p, self.individuos[idp]['grados'], self.individuos[idp]['ceg'], use_radians=False)
+                    rpt = affinity.translate(rp, self.individuos[idp]['xoff'], self.individuos[idp]['yoff'])
+                    output.write({'properties': elem['properties'], 'geometry': mapping(rpt)})
