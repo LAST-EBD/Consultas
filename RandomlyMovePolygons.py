@@ -17,10 +17,6 @@ class randomly_move():
         self.shape = shape
         self.marco = marco
         self.out = os.path.join(r'O:\consultas\shapes_moved', os.path.split(self.shape)[1])
-        
-        #myshp = fiona.open(self.shape)
-        #frame = fiona.open(self.marco)
-        
         self.moves = {0: 'NW', 1: 'NE', 2: 'SW', 3: 'SE'}
 
         self.rndm = random.randrange(0,4)

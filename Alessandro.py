@@ -15,9 +15,16 @@ class alessandro(object):
         self.pointshp = pointshp
         self.marco = marco
         self.base = os.path.split(self.pointshp)[0]
+        self.name = os.path.split(self.pointshp)[1][:-4]
         self.moved = os.path.join(self.base, 'moved')
+        self.movedcc = os.path.join(self.moved, 'cc')
+        self.movedcg = os.path.join(self.moved, 'cg')
         if not os.path.exists(self.moved):
             os.makedirs(self.moved)
+        if not os.path.exists(self.movedcc):
+            os.makedirs(self.movedcc)
+        if not os.path.exists(self.movedcg):
+            os.makedirs(self.movedcg)
         self.moves = {0: 'NW', 1: 'NE', 2: 'SW', 3: 'SE'}
         self.ccpath = os.path.join(self.base, 'cc')
         if not os.path.exists(self.ccpath):
@@ -134,6 +141,7 @@ class alessandro(object):
             if mc.contains(cc):
                 print('Punto dentro del marco')
                 self.individuos[k]['xoff'], self.individuos[k]['yoff'] = offx, offy
+
             else:
                 print('Punto fuera del marco')
                 self.get_extent_shapely(k)
@@ -151,7 +159,7 @@ class alessandro(object):
             coords = from_epsg(25830)
 
             # Escribimos el nuevo shapefile con las nuevas coordenadas
-            with fiona.open(os.path.join(self.moved, 'prfinal4clases_mcrec2.shp'), 'w',
+            with fiona.open(os.path.join(self.moved, self.name + '_rm.shp'), 'w',
                             'ESRI Shapefile', schema, coords) as output:
                 for elem in input:
                     idp = elem['properties']['ID_progres']
@@ -160,6 +168,38 @@ class alessandro(object):
                                          use_radians=False)
                     rpt = affinity.translate(rp, self.individuos[idp]['xoff'], self.individuos[idp]['yoff'])
                     output.write({'properties': elem['properties'], 'geometry': mapping(rpt)})
+
+        # Ahora creamos los shapes con los centro de gravedad y centroides movidos
+        cglist = [os.path.join(self.cgpath, i) for i in os.listdir(self.cgpath) if i.endswith('.shp') and not 'rm' in i]
+        cclist = [os.path.join(self.ccpath, i) for i in os.listdir(self.ccpath) if i.endswith('.shp') and not 'rm' in i]
+
+        for cg in cglist:
+            with fiona.open(cg, 'r') as input:
+                # The output has the same schema
+                schema = input.schema.copy()
+                coords = from_epsg(25830)
+
+                with fiona.open(os.path.join(self.movedcg, os.path.split(cg)[1][:-4] + '_rm.shp'), 'w',
+                                'ESRI Shapefile', schema, coords) as output:
+                    for elem in input:
+                        idp = elem['properties']['id']
+                        p = Point(elem['geometry']['coordinates'])
+                        pt = affinity.translate(p, self.individuos[idp]['xoff'], self.individuos[idp]['yoff'])
+                        output.write({'properties': elem['properties'], 'geometry': mapping(pt)})
+
+        for cc in cclist:
+            with fiona.open(cc, 'r') as input:
+                # The output has the same schema
+                schema = input.schema.copy()
+                coords = from_epsg(25830)
+
+                with fiona.open(os.path.join(self.movedcc, os.path.split(cc)[1][:-4] + '_rm.shp'), 'w',
+                                'ESRI Shapefile', schema, coords) as output:
+                    for elem in input:
+                        idp = elem['properties']['id']
+                        p = Point(elem['geometry']['coordinates'])
+                        pt = affinity.translate(p, self.individuos[idp]['xoff'], self.individuos[idp]['yoff'])
+                        output.write({'properties': elem['properties'], 'geometry': mapping(pt)})
 
     def run(self):
 
