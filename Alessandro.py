@@ -135,16 +135,20 @@ class alessandro(object):
         centroid = Point(centroid)
         cc = affinity.translate(centroid, offx, offy)
         marco = fiona.open(self.marco)
+        c = 0
         for i in marco:
             mc = Polygon(i['geometry']['coordinates'][0])
             # print('Marco geom', mc)
             if mc.contains(cc):
+                c += 1
                 print('Punto dentro del marco')
-                self.individuos[k]['xoff'], self.individuos[k]['yoff'] = offx, offy
 
-            else:
-                print('Punto fuera del marco')
-                self.get_extent_shapely(k)
+        if c > 0:
+            self.individuos[k]['xoff'], self.individuos[k]['yoff'] = offx, offy
+
+        else:
+            print('Punto fuera del marco')
+            self.get_extent_shapely(k)
 
     def rotate_c(self):
 
