@@ -73,9 +73,9 @@ Se ha utilizado la API del CDS para descargar datos de temperatura a 2 metros de
    - Exporta los resultados a CSV (`resultados_gee.csv`).
 
 2. **Descarga y procesado con la API del CDS**:
-   - Ejecuta `descarga_cds.py` para descargar los datos desde la API del CDS.
-   - Procesa los archivos descargados con `procesado_netcdf.py`.
-   - Los resultados se guardan en `resultados_cds.csv`.
+   - Crea cuenta y sigue las instrucciones para el uso de la API del CDS.
+   - Ejecuta las celdas del notebook.
+   - Los resultados finales se guardan en `resultados_cds.csv`.
 
 ---
 
