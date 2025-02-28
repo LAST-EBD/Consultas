@@ -1,4 +1,4 @@
-# Proyecto: Análisis de temperatura a 2 metros en áreas urbanas de Alemania
+# 🚀 Proyecto: Análisis de temperatura a 2 metros en áreas urbanas de Alemania 🌡️❄️
 
 Este proyecto tiene como objetivo analizar la temperatura a 2 metros sobre áreas urbanas de Alemania utilizando datos del reanálisis ERA5-Land. Se han utilizado dos enfoques principales:
 
@@ -93,7 +93,7 @@ Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT).
 - **Google Earth Engine**: Por proporcionar una plataforma poderosa para el análisis de datos geoespaciales.
 - **Climate Data Store (CDS) de Copernicus**: Por ofrecer acceso a datos climáticos de alta calidad.
 - **Comunidad de Python**: Por las increíbles librerías que hacen posible el procesado de datos.
-- **Plataformas IA**: Supogo que es como agradecer al excel o a Google Docs, pero la verdad es que ayudan mucho! ;P
+- **Plataformas IA**: Supongo que es como agradecer al excel o a Google Docs, pero la verdad es que ayudan mucho! ;P
 
 ---
 
