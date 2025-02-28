@@ -79,8 +79,8 @@ Se ha utilizado la API del CDS para descargar datos de temperatura a 2 metros de
 
 
 ## Autores
-- **Diego García Díaz**: Laboratorio de SIG y Teledetección de la Estación Biológica de Doñana 🚀.
-- **Veronika Huber**: Investigadora Ramón y Cajal en la Estación Biológica de Doñana solicitante de la consulta.
+- [**Diego García Díaz**](mailto:diegogarcia@ebd.csic.es): Laboratorio de SIG y Teledetección de la Estación Biológica de Doñana 🚀.
+- [**Veronika Huber**]((mailto:veronika.huber@ebd.csic.es)): Investigadora Ramón y Cajal en la Estación Biológica de Doñana solicitante de la consulta.
 
 ---
 
