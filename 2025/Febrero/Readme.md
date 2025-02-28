@@ -26,7 +26,7 @@ Se ha desarrollado un script en JavaScript que utiliza el dataset [**ERA5-Land H
 
 #### Archivos adjuntos:
 - `script_gee.js`: Código JavaScript utilizado en GEE.
-- `resultados_gee.csv`: Resultados exportados desde GEE (entregado a VH). 
+- `resultados_gee.csv`: Resultados exportados desde GEE. 
 
 ---
 
@@ -39,7 +39,7 @@ Se ha utilizado la API del CDS para descargar datos de temperatura a 2 metros de
 
 #### Archivos adjuntos:
 - `cds_analysis.ipynb`: Código Python para la descarga y procesado de datos desde la API del CDS, y del csv descargado de Google Earth Engine.
-
+- `*.grib`: Archivos decargados desde la API del CDS (realmente son netcdf!).
 ---
 
 ## Comparación de enfoques
@@ -79,8 +79,8 @@ Se ha utilizado la API del CDS para descargar datos de temperatura a 2 metros de
 
 
 ## Autores
-- **Diego García Díaz**: LAST-EBD 🚀.
-- **Veronika Huber**: Investigadora Ramón y Cajal solicitante de la consulta.
+- **Diego García Díaz**: Laboratorio de SIG y Teledetección de la Estación Biológica de Doñana 🚀.
+- **Veronika Huber**: Investigadora Ramón y Cajal en la Estación Biológica de Doñana solicitante de la consulta.
 
 ---
 
