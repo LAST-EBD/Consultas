@@ -26,12 +26,12 @@ Se ha desarrollado un script en JavaScript que utiliza el dataset [**ERA5-Land H
 
 #### Archivos adjuntos:
 - `script_gee.js`: Código JavaScript utilizado en GEE.
-- `resultados_gee.csv`: Resultados exportados desde GEE. 
+- `resultados_gee.csv`: Resultados exportados desde GEE (se sube csv ejemplo de 1952). 
 
 ---
 
 ### 2. API del Climate Data Store (CDS) de Copernicus
-Se ha utilizado la API del CDS para descargar datos de temperatura a 2 metros desde 1950. Debido a las limitaciones de la API (lentitud y límites de volumen), se han descargado los datos año por año y se entregan a VH los datos de la decada de 1950 y el código para su procesado en Python.
+Se ha utilizado la API del CDS para descargar datos de temperatura a 2 metros desde 1950. Debido a las limitaciones de la API (lentitud y límites de volumen), se han descargado los datos año por año y se entregan a VH los datos de la década de 1950 y el código para su procesado en Python.
 
 #### Pasos realizados con la API:
 1. **Descarga de datos**: Se han descargado los datos de temperatura para varios años de prueba utilizando la API del CDS.
@@ -39,7 +39,7 @@ Se ha utilizado la API del CDS para descargar datos de temperatura a 2 metros de
 
 #### Archivos adjuntos:
 - `cds_analysis.ipynb`: Código Python para la descarga y procesado de datos desde la API del CDS, y del csv descargado de Google Earth Engine.
-- `*.grib`: Archivos decargados desde la API del CDS (realmente son netcdf!).
+- `*.grib`: Archivos decargados desde la API del CDS (Se suben ejemplos de archivos de la década de los 50). Ojo, realmente son netcdf!).
 ---
 
 ## Comparación de enfoques
