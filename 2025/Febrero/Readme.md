@@ -1,9 +1,9 @@
-# 🚀 Proyecto: Análisis de temperatura a 2 metros en áreas urbanas de Alemania 🌡️❄️
+# Proyecto: Análisis de temperatura a 2 metros en áreas urbanas de Alemania 🌡️❄️
 
 Este proyecto tiene como objetivo analizar la temperatura a 2 metros sobre áreas urbanas de Alemania utilizando datos del reanálisis ERA5-Land. Se han utilizado dos enfoques principales:
 
-1. **Google Earth Engine (GEE)**: Para procesar y cruzar datos de temperatura con polígonos de áreas urbanas.
-2. **API del Climate Data Store (CDS) de Copernicus**: Para descargar y procesar datos de temperatura año por año.
+1. [**Google Earth Engine (GEE)**](https://earthengine.google.com/): Para procesar y cruzar datos de temperatura con polígonos de áreas urbanas.
+2. [**API del Climate Data Store (CDS) de Copernicus**](https://cds.climate.copernicus.eu/): Para descargar y procesar datos de temperatura año por año.
 
 ---
 
@@ -17,7 +17,7 @@ El objetivo principal es calcular la temperatura media diaria a 2 metros sobre �
 ## Enfoques utilizados
 
 ### 1. Google Earth Engine (GEE)
-Se ha desarrollado un script en JavaScript que utiliza el dataset **ERA5-Land Hourly - ECMWF Climate Reanalysis** disponible en GEE ([enlace al dataset](https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_HOURLY?hl=es-419)).
+Se ha desarrollado un script en JavaScript que utiliza el dataset [**ERA5-Land Hourly - ECMWF Climate Reanalysis**](https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_HOURLY?hl=es-419) disponible en GEE.
 
 #### Pasos realizados en GEE:
 1. **Cálculo de la media diaria**: A partir de los datos horarios, se calcula la temperatura media diaria en grados centígrados.
@@ -79,8 +79,8 @@ Se ha utilizado la API del CDS para descargar datos de temperatura a 2 metros de
 
 
 ## Autores
-- **Diego García Díaz**: LAST-EBD.
-- **VH**: Investigadora Ramón y Cajal solicitante de la consulta.
+- **Diego García Díaz**: LAST-EBD 🚀.
+- **Veronika Huber**: Investigadora Ramón y Cajal solicitante de la consulta.
 
 ---
 
