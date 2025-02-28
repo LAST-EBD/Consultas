@@ -1,3 +1,7 @@
+// imports
+var cities = "your polygons should go here"
+//------------------------------------------------------------
+
 // 📌 Cargar la colección de ERA5-Land Horaria desde 1950
 var era5_hourly = ee.ImageCollection('ECMWF/ERA5_LAND/HOURLY')
                    .select('temperature_2m')  // Seleccionar temperatura a 2m
@@ -17,7 +21,7 @@ var uniqueDates = era5_celsius.aggregate_array('system:time_start')
 // 🔄 Generar imágenes diarias promediando las observaciones horarias
 var era5_daily = ee.ImageCollection(uniqueDates.map(function(dateStr) {
   var date = ee.Date(dateStr);
-  var dailyMean = era5_celsius.filterDate(date, date.advance(1, 'day')).mean();
+  var dailyMean = era5_celsius.filterDate(date, date.advance(1, 'day')).mean(); // change this to min, max, median or any other stat
   return dailyMean.set('date', dateStr).set('system:time_start', date.millis());
 }));
 
@@ -27,7 +31,7 @@ var statsCollection = era5_daily.map(function(img) {
     collection: cities,  // Capa de ciudades
     reducer: ee.Reducer.mean()
       .combine({reducer2: ee.Reducer.minMax(), sharedInputs: true})
-      .combine({reducer2: ee.Reducer.stdDev(), sharedInputs: true}),
+      .combine({reducer2: ee.Reducer.stdDev(), sharedInputs: true}), // In this line we are getting the stats of the pixels inside the polygons but just with the mean selected before!
     scale: 10000,  // Ajusta según resolución deseada
     tileScale: 2   // Optimiza memoria
   }).map(function(feature) {
