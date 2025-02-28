@@ -1,4 +1,4 @@
-# Proyecto: Análisis de temperatura a 2 metros en áreas urbanas de Alemania 🌡️❄️
+# Consulta: Análisis de temperatura a 2 metros en áreas urbanas de Alemania 🌡️❄️
 
 Este proyecto tiene como objetivo analizar la temperatura a 2 metros sobre áreas urbanas de Alemania utilizando datos del reanálisis ERA5-Land. Se han utilizado dos enfoques principales:
 
