@@ -59,11 +59,13 @@ Se ha utilizado la API del CDS para descargar datos de temperatura a 2 metros de
 - Cuenta en **Google Earth Engine**.
 - Cuenta en el **Climate Data Store (CDS)** de Copernicus.
 - Python 3.x con las siguientes librerías:
+  - `cdsapi`
   - `xarray`
+  - `cfgrib`
   - `netCDF4`
+  - `rioxarray`
   - `rasterstats`
   - `geopandas`
-  - `cdsapi`
 
 ### Pasos
 1. **Procesado en GEE**:
