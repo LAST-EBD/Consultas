@@ -46,10 +46,10 @@ Se ha utilizado la API del CDS para descargar datos de temperatura a 2 metros de
 
 | Característica              | Google Earth Engine (GEE)         | API del CDS de Copernicus       |
 |-----------------------------|-----------------------------------|---------------------------------|
-| **Velocidad de procesado**  | Muy rápido                        | Lento (descarga año por año)    |
-| **Volumen de datos**        | Sin límites (en la nube)          | Limitado por la API             |
+| **Velocidad de procesado**  | Razonablemente lento              | Lentísimo                       |
+| **Volumen de datos**        | Sin límites para todo el periodo  | Limitado por la API             |
 | **Facilidad de uso**        | Fácil (herramientas integradas)   | Requiere más configuración      |
-| **Exportación de resultados**| Directa a CSV                     | Requiere procesado adicional    |
+| **Exportación de resultados**| Directa a CSV                    | Requiere procesado adicional    |
 
 ---
 
